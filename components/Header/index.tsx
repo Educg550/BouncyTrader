@@ -6,7 +6,7 @@ import { ActionIcon } from "@mantine/core";
 import { ThemeContext } from "styled-components";
 import { StackContext } from "../../pages/_app";
 
-import { BsSun, BsMoon } from "react-icons/bs";
+import { BsSun, BsMoon, BsGithub } from "react-icons/bs";
 
 export const Header: React.FC = () => {
   const { colors, title } = useContext(ThemeContext);
@@ -20,19 +20,21 @@ export const Header: React.FC = () => {
       />
 
       <IconBox>
-        <img src="images/github.png" height={50} />
+        <a href="https://github.com/Educg550/BouncyTrader" target="_blank">
+          <BsGithub size={40} />
+        </a>
+
         <ActionIcon
           onClick={() => {
             toggleTheme();
           }}
-          variant="outline"
+          variant="transparent"
           title="Toggle color theme"
-          color={colors.primary}
         >
           {title === "dark" ? (
             <BsSun size={22} color={colors.primary} />
           ) : (
-            <BsMoon size={22} color={colors.primary} />
+            <BsMoon size={22} color={colors.text} />
           )}
         </ActionIcon>
       </IconBox>

@@ -1,12 +1,23 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { Header } from "../components/Header";
-import { Container, SimpleContainer } from "../styles/home";
+import {
+  Container,
+  Content,
+  SimpleContainer,
+  InputContainer,
+} from "../styles/home";
 
-import { Tabs } from "@mantine/core";
+import { InputWrapper, NumberInput } from "@mantine/core";
 
-import { AiOutlineCalculator } from "react-icons/ai";
-import { VscGraphLine } from "react-icons/vsc";
+import { Title } from "../components/Title";
+
+import {
+  AiOutlineDollar,
+  AiOutlinePercentage,
+  AiOutlineFieldTime,
+  AiOutlineGold,
+} from "react-icons/ai";
 
 import Footer from "../components/Footer";
 import { useContext } from "react";
@@ -26,22 +37,56 @@ const Home: NextPage = () => {
 
       <Header />
 
-      <SimpleContainer>
-        <Tabs color="yellow" tabPadding="md">
-          <Tabs.Tab
-            label="PnL Calculator"
-            icon={<AiOutlineCalculator size={36} />}
-          >
-            CONTEÚDO DA CALCULADORA AQUI
-          </Tabs.Tab>
-          <Tabs.Tab label="Gráfico" icon={<VscGraphLine size={36} />}>
-            CONTEÚDO DO GRÁFICO AQUI (API do TradingView)
-          </Tabs.Tab>
-          <Tabs.Tab label="N sei kk" icon={<AiOutlineCalculator size={36} />}>
-            PODE COLOCAR ALGUMA OUTRA COISA AQ MAS AINDA N SEI OQ GG
-          </Tabs.Tab>
-        </Tabs>
-      </SimpleContainer>
+      <Content>
+        <SimpleContainer>
+          <Title>PnL Calculator</Title>
+          <InputContainer>
+            <NumberInput
+              label="Initial Investment"
+              placeholder="(e.g. $10.30)"
+              description="Your first amount invested"
+              size="md"
+              precision={2}
+              min={1}
+              hideControls={true}
+              icon={<AiOutlineDollar size={20} color={colors.text} />}
+              required
+            />
+            <NumberInput
+              label="Daily Profit"
+              placeholder="(e.g. 3.08%)"
+              description="Your desired profit for each day of investing"
+              size="md"
+              precision={2}
+              min={1}
+              hideControls={true}
+              icon={<AiOutlinePercentage size={20} color={colors.text} />}
+              required
+            />
+            <NumberInput
+              label="Time Elapsed"
+              placeholder="(e.g. 15 days)"
+              description="The time that you want to remain investing"
+              size="md"
+              precision={2}
+              min={1}
+              hideControls={true}
+              icon={<AiOutlineFieldTime size={20} color={colors.text} />}
+              required
+            />
+            <NumberInput
+              label="Mensal Investment"
+              placeholder="(e.g. $5.15)"
+              description="An amount that you want to invest every month"
+              size="md"
+              precision={2}
+              min={1}
+              hideControls={true}
+              icon={<AiOutlineGold size={20} color={colors.text} />}
+            />
+          </InputContainer>
+        </SimpleContainer>
+      </Content>
 
       <Footer />
     </Container>

@@ -5,12 +5,11 @@ export const Container = styled.div`
   flex-direction: column;
   flex: 1;
   height: 100vh;
-  //margin: 2.125rem;
 
   justify-content: space-between;
   align-items: center;
 
-  gap: 3.5rem;
+  gap: 2.5rem;
 
   background-color: ${(props) => props.theme.colors.background};
   background-size: cover;
@@ -20,12 +19,33 @@ export const Container = styled.div`
 
 export const SimpleContainer = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1;
+
+  align-items: center;
 
   background: ${(props) => props.theme.colors.secondaryBackground};
 
-  padding: 2rem;
+  padding: 1rem 0.5rem;
   border-radius: 2.5rem;
 
   max-width: 50%;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex: 1;
+
+  justify-content: center;
+
+  width: 100%;
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 1.5rem;
 `;
