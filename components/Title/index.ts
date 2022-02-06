@@ -5,3 +5,4 @@ export const Title = styled.h1`
   font-family: Oswald;
   font-weight: 400;
 `;
+
