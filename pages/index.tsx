@@ -6,6 +6,9 @@ import {
   Content,
   SimpleContainer,
   InputContainer,
+  ResultsContainer,
+  PrimaryResult,
+  SecondaryResult
 } from "../styles/home";
 
 import { InputWrapper, NumberInput } from "@mantine/core";
@@ -44,7 +47,7 @@ const Home: NextPage = () => {
             <NumberInput
               label="Initial Investment"
               placeholder="(e.g. $10.30)"
-              description="Your first amount invested"
+              description="Your first amount invested. Much bigger, much better."
               size="md"
               precision={2}
               min={1}
@@ -86,6 +89,23 @@ const Home: NextPage = () => {
             />
           </InputContainer>
         </SimpleContainer>
+
+        <ResultsContainer>
+          <h1>In X days you will have got</h1>
+          <PrimaryResult>
+            R$ 3.000,00
+          </PrimaryResult>
+
+          <h2>In a month</h2>
+          <SecondaryResult>
+            R$ 2.500,00
+          </SecondaryResult>
+          <h2>In a year</h2>
+          <SecondaryResult>
+            R$ 45.000,00
+          </SecondaryResult>
+        </ResultsContainer>
+        
       </Content>
 
       <Footer />

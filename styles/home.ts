@@ -13,6 +13,7 @@ export const Container = styled.div`
 
   background-color: ${(props) => props.theme.colors.background};
   background-size: cover;
+  background-image: url(/images/background.png);
 
   color: ${(props) => props.theme.colors.text};
 `;
@@ -42,10 +43,36 @@ export const Content = styled.div`
 `;
 
 export const InputContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-
-  justify-content: center;
-
+  width: 70%;
+  display: grid;
+  grid-template-columns: 45% 45%;
+  justify-content: space-between;
   gap: 1.5rem;
 `;
+
+export const ResultsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
+  align-items: center
+`;
+
+export const PrimaryResult = styled.h1`
+  color: ${(props) => props.theme.colors.green};
+  font-size: 4.5rem;
+  width: 100%;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 700;
+  margin-top: 0;
+`
+
+export const SecondaryResult = styled.h2`
+  color: ${(props) => props.theme.colors.green};
+  font-size: 2.25rem;
+  width: 100%;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 700;
+  margin-top: 0;
+`
