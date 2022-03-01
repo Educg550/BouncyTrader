@@ -4,7 +4,7 @@ import { Container, Logo, IconBox } from "./styles";
 import { ActionIcon } from "@mantine/core";
 
 import { ThemeContext } from "styled-components";
-import { StackContext } from "../../pages/_app";
+import { StackContext } from "../../../pages/_app";
 
 import { BsSun, BsMoon, BsGithub } from "react-icons/bs";
 

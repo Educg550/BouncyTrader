@@ -1,19 +1,19 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Header } from "../components/Header";
+import { Header } from "../src/components/Header";
 import {
   Container,
   Content,
-  SimpleContainer,
   InputContainer,
   ResultsContainer,
   PrimaryResult,
-  SecondaryResult
+  SecondaryResult,
 } from "../styles/home";
 
-import { InputWrapper, NumberInput } from "@mantine/core";
+import { Button } from "@mantine/core";
 
-import { Title } from "../components/Title";
+import { Title } from "../src/components/Title";
+import { SimpleContainer } from "../src/components/SimpleContainer";
 
 import {
   AiOutlineDollar,
@@ -22,20 +22,37 @@ import {
   AiOutlineGold,
 } from "react-icons/ai";
 
-import Footer from "../components/Footer";
-import { useContext } from "react";
+import Footer from "../src/components/Footer";
+import { useContext, useState } from "react";
 import { ThemeContext } from "styled-components";
+import { BouncyInput } from "../src/components/BouncyInput";
 
 const Home: NextPage = () => {
   const { colors } = useContext(ThemeContext);
 
+  const [shouldShowResults, setShouldShowResults] = useState(false);
+  const [initialAmount, setInitialAmount] = useState(0);
+  const [dailyProfit, setDailyProfit] = useState(0);
+  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [mensalAmount, setMensalAmount] = useState(0);
+
+  const handleSubmit = () => {
+    event.preventDefault(); // Don't remove this, as it doesn't redirect the page on submit
+
+    console.log(initialAmount);
+
+    setShouldShowResults(true);
+  };
+
   return (
     <Container>
       <Head>
-        <title>
-          BouncyTrader | PnL calculator based on user's daily operations
-        </title>
+        <title>PnL Calculator | BouncyTrader</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Calculate your PnL based on daily operations"
+        />
       </Head>
 
       <Header />
@@ -43,69 +60,81 @@ const Home: NextPage = () => {
       <Content>
         <SimpleContainer>
           <Title>PnL Calculator</Title>
-          <InputContainer>
-            <NumberInput
+          <InputContainer onSubmit={handleSubmit}>
+            <BouncyInput
               label="Initial Investment"
               placeholder="(e.g. $10.30)"
-              description="Your first amount invested. Much bigger, much better."
-              size="md"
+              description="Your first amount invested. Much bigger, much better"
               precision={2}
-              min={1}
-              hideControls={true}
               icon={<AiOutlineDollar size={20} color={colors.text} />}
+              onChange={setInitialAmount}
               required
             />
-            <NumberInput
+            <BouncyInput
+              id="daily"
               label="Daily Profit"
               placeholder="(e.g. 3.08%)"
               description="Your desired profit for each day of investing"
-              size="md"
               precision={2}
-              min={1}
-              hideControls={true}
               icon={<AiOutlinePercentage size={20} color={colors.text} />}
+              onChange={setDailyProfit}
               required
             />
-            <NumberInput
+            <BouncyInput
+              id="time"
               label="Time Elapsed"
               placeholder="(e.g. 15 days)"
-              description="The time that you want to remain investing"
-              size="md"
-              precision={2}
-              min={1}
-              hideControls={true}
+              description="The time that you want to remain investing (in days)"
               icon={<AiOutlineFieldTime size={20} color={colors.text} />}
+              onChange={setTimeElapsed}
               required
             />
-            <NumberInput
+            <BouncyInput
+              id="mensal"
               label="Mensal Investment"
               placeholder="(e.g. $5.15)"
               description="An amount that you want to invest every month"
-              size="md"
               precision={2}
-              min={1}
-              hideControls={true}
               icon={<AiOutlineGold size={20} color={colors.text} />}
+              onChange={setMensalAmount}
             />
+
+            <Button
+              type="submit"
+              style={{
+                backgroundColor: colors.primary,
+                color: colors.secondaryBackground,
+                gridColumn: "span 2",
+                minHeight: 50,
+              }}
+            >
+              Calcular
+            </Button>
           </InputContainer>
         </SimpleContainer>
 
-        <ResultsContainer>
-          <h1>In X days you will have got</h1>
+        <ResultsContainer
+          style={{ display: shouldShowResults ? "flex" : "none" }}
+        >
+          <h1>In {timeElapsed} days you will have got</h1>
           <PrimaryResult>
-            R$ 3.000,00
+            R${" "}
+            {(
+              initialAmount * Math.pow(1 + dailyProfit / 100, timeElapsed)
+            ).toFixed(2)}
           </PrimaryResult>
 
           <h2>In a month</h2>
           <SecondaryResult>
-            R$ 2.500,00
+            R${" "}
+            {(initialAmount * Math.pow(1 + dailyProfit / 100, 30)).toFixed(2)}
           </SecondaryResult>
           <h2>In a year</h2>
           <SecondaryResult>
-            R$ 45.000,00
+            R${" "}
+            {(initialAmount * Math.pow(1 + dailyProfit / 100, 365)).toFixed(2)}
           </SecondaryResult>
         </ResultsContainer>
-        
       </Content>
 
       <Footer />

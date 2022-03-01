@@ -13,24 +13,9 @@ export const Container = styled.div`
 
   background-color: ${(props) => props.theme.colors.background};
   background-size: cover;
-  background-image: url(/images/background.png);
+  //background-image: url(/images/background.png);
 
   color: ${(props) => props.theme.colors.text};
-`;
-
-export const SimpleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-
-  align-items: center;
-
-  background: ${(props) => props.theme.colors.secondaryBackground};
-
-  padding: 1rem 0.5rem;
-  border-radius: 2.5rem;
-
-  max-width: 50%;
 `;
 
 export const Content = styled.div`
@@ -42,19 +27,22 @@ export const Content = styled.div`
   width: 100%;
 `;
 
-export const InputContainer = styled.div`
-  width: 70%;
+export const InputContainer = styled.form`
   display: grid;
-  grid-template-columns: 45% 45%;
+
+  grid-template-columns: 50% 50%;
+
   justify-content: space-between;
-  gap: 1.5rem;
+
+  column-gap: 1rem;
+  row-gap: 2rem;
 `;
 
 export const ResultsContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 10%;
-  align-items: center
+  align-items: center;
 `;
 
 export const PrimaryResult = styled.h1`
@@ -65,7 +53,7 @@ export const PrimaryResult = styled.h1`
   font-family: Poppins;
   font-size: 700;
   margin-top: 0;
-`
+`;
 
 export const SecondaryResult = styled.h2`
   color: ${(props) => props.theme.colors.green};
@@ -75,4 +63,4 @@ export const SecondaryResult = styled.h2`
   font-family: Poppins;
   font-size: 700;
   margin-top: 0;
-`
+`;
