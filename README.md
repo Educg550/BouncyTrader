@@ -22,6 +22,8 @@
 
 ## Getting Started
 
+You can view the project directly in your browser by clicking [this link (Vercel deploy)](https://bouncy-trader.vercel.app/)
+
 First, run the development server:
 
 ```bash
