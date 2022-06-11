@@ -43,6 +43,8 @@ export const ResultsContainer = styled.div`
   flex-direction: column;
   margin-left: 10%;
   align-items: center;
+
+  justify-content: center;
 `;
 
 export const PrimaryResult = styled.h1`

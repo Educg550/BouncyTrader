@@ -116,23 +116,47 @@ const Home: NextPage = () => {
         <ResultsContainer
           style={{ display: shouldShowResults ? "flex" : "none" }}
         >
-          <h1>In {timeElapsed} days you will have got</h1>
+          <h1>In {timeElapsed ? timeElapsed : 0} days you will have got</h1>
           <PrimaryResult>
-            R${" "}
-            {(
-              initialAmount * Math.pow(1 + dailyProfit / 100, timeElapsed)
-            ).toFixed(2)}
+            ${" "}
+            {initialAmount && dailyProfit && timeElapsed
+              ? mensalAmount && timeElapsed >= 30
+                ? (
+                    (mensalAmount *
+                      (Math.pow(
+                        1 + (dailyProfit / 100) * 30,
+                        timeElapsed / 30
+                      ) -
+                        1)) /
+                    (dailyProfit / 100)
+                  ).toFixed(2)
+                : (
+                    initialAmount * Math.pow(1 + dailyProfit / 100, timeElapsed)
+                  ).toFixed(2)
+              : initialAmount}
           </PrimaryResult>
 
           <h2>In a month</h2>
           <SecondaryResult>
-            R${" "}
-            {(initialAmount * Math.pow(1 + dailyProfit / 100, 30)).toFixed(2)}
+            ${" "}
+            {initialAmount && dailyProfit
+              ? (initialAmount * Math.pow(1 + dailyProfit / 100, 30)).toFixed(2)
+              : 0}
           </SecondaryResult>
           <h2>In a year</h2>
           <SecondaryResult>
-            R${" "}
-            {(initialAmount * Math.pow(1 + dailyProfit / 100, 365)).toFixed(2)}
+            ${" "}
+            {initialAmount && dailyProfit
+              ? mensalAmount && timeElapsed >= 30
+                ? (
+                    (mensalAmount *
+                      Math.pow(1 + (dailyProfit / 100) * 30, 12)) /
+                    ((dailyProfit / 100) * 30)
+                  ).toFixed(2)
+                : (
+                    initialAmount * Math.pow(1 + dailyProfit / 100, 365)
+                  ).toFixed(2)
+              : 0}
           </SecondaryResult>
         </ResultsContainer>
       </Content>
